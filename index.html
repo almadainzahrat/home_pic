@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> عقارات زهرة المدائن </title>
+    <title>عقارات زهرة المدائن</title>
     <style>
         * {
             margin: 0;
@@ -31,10 +31,9 @@
 
         .gallery {
             display: flex;
-            /*  التغيير هنا: أضفنا مسافة 1rem بين الصور */
-            gap: 1rem; /* يمكنك تغيير هذه القيمة حسب رغبتك (مثلاً: 10px, 2vw) */
+            gap: 1rem;
             height: 100%;
-            width: fit-content; /* تم تغيير العرض ليناسب المحتوى مع المسافات */
+            width: fit-content;
             animation: scroll-left 60s linear infinite;
         }
 
@@ -45,27 +44,19 @@
             flex-shrink: 0;
         }
 
-        /* Scrolling animation from right to left */
         @keyframes scroll-left {
             0% {
                 transform: translateX(0);
             }
             100% {
-                /* تم تعديل قيمة التحريك لتشمل عرض الصور والمسافات بينها */
                 transform: translateX(calc(-50% - (0.5rem * 8)));
             }
-        }
-
-        /* Pause animation on hover          .gallery:hover {
-            animation-play-state: paused; */
-
         }
     </style>
 </head>
 <body>
     <div class="gallery-container">
         <div class="gallery">
-            <!-- الصور الأصلية -->
             <img src="img/1.png" alt="صورة 1">
             <img src="img/2.png" alt="صورة 2">
             <img src="img/3.png" alt="صورة 3">
@@ -74,7 +65,6 @@
             <img src="img/6.png" alt="صورة 6">
             <img src="img/7.png" alt="صورة 7">
             <img src="img/8.png" alt="صورة 8">
-            <!-- تكرار الصور للحركة المستمرة -->
             <img src="img/1.png" alt="صورة 1">
             <img src="img/2.png" alt="صورة 2">
             <img src="img/3.png" alt="صورة 3">
