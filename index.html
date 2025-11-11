@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> عقارات زهرة المدائن </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+        }
+
+        .gallery-container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery {
+            display: flex;
+            /*  التغيير هنا: أضفنا مسافة 1rem بين الصور */
+            gap: 1rem; /* يمكنك تغيير هذه القيمة حسب رغبتك (مثلاً: 10px, 2vw) */
+            height: 100%;
+            width: fit-content; /* تم تغيير العرض ليناسب المحتوى مع المسافات */
+            animation: scroll-left 60s linear infinite;
+        }
+
+        .gallery img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Scrolling animation from right to left */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* تم تعديل قيمة التحريك لتشمل عرض الصور والمسافات بينها */
+                transform: translateX(calc(-50% - (0.5rem * 8)));
+            }
+        }
+
+        /* Pause animation on hover */
+        .gallery:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery">
+            <!-- الصور الأصلية -->
+            <img src="img/1.png" alt="صورة 1">
+            <img src="img/2.png" alt="صورة 2">
+            <img src="img/3.png" alt="صورة 3">
+            <img src="img/4.png" alt="صورة 4">
+            <img src="img/5.png" alt="صورة 5">
+            <img src="img/6.png" alt="صورة 6">
+            <img src="img/7.png" alt="صورة 7">
+            <img src="img/8.png" alt="صورة 8">
+            <!-- تكرار الصور للحركة المستمرة -->
+            <img src="img/1.png" alt="صورة 1">
+            <img src="img/2.png" alt="صورة 2">
+            <img src="img/3.png" alt="صورة 3">
+            <img src="img/4.png" alt="صورة 4">
+            <img src="img/5.png" alt="صورة 5">
+            <img src="img/6.png" alt="صورة 6">
+            <img src="img/7.png" alt="صورة 7">
+            <img src="img/8.png" alt="صورة 8">
+        </div>
+    </div>
+
+    <script>
+        // Pause/Play with space bar
+        document.addEventListener('keydown', function(event) {
+            const gallery = document.querySelector('.gallery');
+            if (event.key === ' ') {
+                event.preventDefault();
+                if (gallery.style.animationPlayState === 'paused') {
+                    gallery.style.animationPlayState = 'running';
+                } else {
+                    gallery.style.animationPlayState = 'paused';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
