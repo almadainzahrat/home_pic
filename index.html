@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عقارات زهرة المدائن</title>
+
     <style>
         * {
             margin: 0;
@@ -31,242 +32,123 @@
 
         .gallery {
             display: flex;
-            gap: 1rem;
             height: 100%;
-            width: fit-content;
-            animation: scroll-left 60s linear infinite;
+            gap: 1rem;
+            flex-wrap: nowrap;
+            animation: scroll 80s linear infinite;
         }
 
         .gallery img {
             height: 100%;
             width: auto;
-            object-fit: cover;
             flex-shrink: 0;
+            object-fit: cover;
         }
 
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-50% - (0.5rem * 8)));
-            }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
     </style>
 </head>
+
 <body>
+
     <div class="gallery-container">
-        <div class="gallery">
-            <img src="img/1.png" alt="صورة 1">
-            <img src="img/2.png" alt="صورة 2">
-            <img src="img/3.png" alt="صورة 3">
-            <img src="img/4.png" alt="صورة 4">
-            <img src="img/5.png" alt="صورة 5">
-            <img src="img/6.png" alt="صورة 6">
-            <img src="img/7.png" alt="صورة 7">
-            <img src="img/8.png" alt="صورة 8">
-            <img src="img/9.png" alt="صورة 1">
-            <img src="img/10.png" alt="صورة 2">
-            <img src="img/11.png" alt="صورة 3">
-            <img src="img/12.png" alt="صورة 4">
-            <img src="img/13.png" alt="صورة 5">
-            <img src="img/14.png" alt="صورة 6">
-            <img src="img/15.png" alt="صورة 7">
-            <img src="img/16.png" alt="صورة 8">
-            <img src="img/17.png" alt="صورة 2">
-            <img src="img/18.png" alt="صورة 1">
-            <img src="img/19.png" alt="صورة 2">
-            <img src="img/20.png" alt="صورة 3">
-            <img src="img/21.png" alt="صورة 4">
-            <img src="img/22.png" alt="صورة 5">
-            <img src="img/23.png" alt="صورة 6">
-            <img src="img/24.png" alt="صورة 7">
-            <img src="img/25.png" alt="صورة 8">
-            <img src="img/26.png" alt="صورة 1">
-            <img src="img/27.png" alt="صورة 2">
-            <img src="img/28.png" alt="صورة 3">
-            <img src="img/29.png" alt="صورة 4">
-            <img src="img/30.png" alt="صورة 5">
-            <img src="img/31.png" alt="صورة 6">
-            <img src="img/32.png" alt="صورة 7">
-            <img src="img/33.png" alt="صورة 8">
-            <img src="img/34.png" alt="صورة 2">
-            <img src="img/35.png" alt="صورة 1">
-            <img src="img/36.png" alt="صورة 2">
-            <img src="img/37.png" alt="صورة 3">
-            <img src="img/38.png" alt="صورة 4">
-            <img src="img/39.png" alt="صورة 5">
-            <img src="img/40.png" alt="صورة 6">
-            <img src="img/41.png" alt="صورة 7">
-            <img src="img/42.png" alt="صورة 8">
-            <img src="img/43.png" alt="صورة 1">
-            <img src="img/44.png" alt="صورة 6">
-            <img src="img/45.png" alt="صورة 7">
-            <img src="img/46.png" alt="صورة 8">
-            <img src="img/47.png" alt="صورة 2">
-            <img src="img/48.png" alt="صورة 1">
-            <img src="img/49.png" alt="صورة 2">
-            <img src="img/50.png" alt="صورة 3">
-            <img src="img/51.png" alt="صورة 4">
-            <img src="img/52.png" alt="صورة 5">
-            <img src="img/53.png" alt="صورة 6">
-            <img src="img/54.png" alt="صورة 7">
-            <img src="img/55.png" alt="صورة 8">
-            <img src="img/56.png" alt="صورة 1">
-            <img src="img/57.png" alt="صورة 2">
-            <img src="img/58.png" alt="صورة 3">
-            <img src="img/59.png" alt="صورة 4">
-
-            <img src="img/01.png" alt="صورة 1">
-            <img src="img/02.png" alt="صورة 2">
-            <img src="img/03.png" alt="صورة 3">
-            <img src="img/04.png" alt="صورة 4">
-            <img src="img/05.png" alt="صورة 5">
-            <img src="img/06.png" alt="صورة 6">
-            <img src="img/07.png" alt="صورة 7">
-            <img src="img/08.png" alt="صورة 8">
-            <img src="img/09.png" alt="صورة 1">
-            <img src="img/010.png" alt="صورة 2">
-            <img src="img/011.png" alt="صورة 3">
-            <img src="img/012.png" alt="صورة 4">
-            <img src="img/013.png" alt="صورة 5">
-            <img src="img/014.png" alt="صورة 6">
-            <img src="img/015.png" alt="صورة 7">
-            <img src="img/016.png" alt="صورة 8">
-            <img src="img/017.png" alt="صورة 2">
-            <img src="img/018.png" alt="صورة 1">
-            <img src="img/019.png" alt="صورة 2">
-            <img src="img/020.png" alt="صورة 3">
-            <img src="img/021.png" alt="صورة 4">
-            <img src="img/022.png" alt="صورة 5">
-            <img src="img/023.png" alt="صورة 6">
-            <img src="img/024.png" alt="صورة 7">
-            <img src="img/025.png" alt="صورة 8">
-            <img src="img/026.png" alt="صورة 1">
-            <img src="img/027.png" alt="صورة 2">
-            <img src="img/028.png" alt="صورة 3">
-            <img src="img/029.png" alt="صورة 4">
-            <img src="img/030.png" alt="صورة 5">
-            <img src="img/031.png" alt="صورة 6">
-            <img src="img/032.png" alt="صورة 7">
-            <img src="img/033.png" alt="صورة 8">
-            <img src="img/034.png" alt="صورة 2">
-            <img src="img/035.png" alt="صورة 1">
-            <img src="img/036.png" alt="صورة 2">
-            <img src="img/037.png" alt="صورة 3">
-            <img src="img/038.png" alt="صورة 4">
-            <img src="img/039.png" alt="صورة 5">
-            <img src="img/040.png" alt="صورة 6">
-            <img src="img/041.png" alt="صورة 7">
-            <img src="img/042.png" alt="صورة 8">
-            <img src="img/043.png" alt="صورة 1">
-            <img src="img/044.png" alt="صورة 6">
-            <img src="img/045.png" alt="صورة 7">
-            <img src="img/046.png" alt="صورة 8">
-            <img src="img/047.png" alt="صورة 2">
-            <img src="img/048.png" alt="صورة 1">
-            <img src="img/049.png" alt="صورة 2">
-            <img src="img/050.png" alt="صورة 3">
-            <img src="img/051.png" alt="صورة 4">
-            <img src="img/052.png" alt="صورة 5">
-            <img src="img/053.png" alt="صورة 6">
-            <img src="img/054.png" alt="صورة 7">
-            <img src="img/055.png" alt="صورة 8">
-            <img src="img/056.png" alt="صورة 1">
-            <img src="img/057.png" alt="صورة 2">
-            <img src="img/058.png" alt="صورة 3">
-            <img src="img/059.png" alt="صورة 4">
-
+        <div class="gallery" id="gallery">
+            <!-- فقط صورك الأصلية من 1 إلى 59 -->
+            <img src="img/1.png">
+            <img src="img/2.png">
+            <img src="img/3.png">
+            <img src="img/4.png">
+            <img src="img/5.png">
+            <img src="img/6.png">
+            <img src="img/7.png">
+            <img src="img/8.png">
+            <img src="img/9.png">
+            <img src="img/10.png">
+            <img src="img/11.png">
+            <img src="img/12.png">
+            <img src="img/13.png">
+            <img src="img/14.png">
+            <img src="img/15.png">
+            <img src="img/16.png">
+            <img src="img/17.png">
+            <img src="img/18.png">
+            <img src="img/19.png">
+            <img src="img/20.png">
+            <img src="img/21.png">
+            <img src="img/22.png">
+            <img src="img/23.png">
+            <img src="img/24.png">
+            <img src="img/25.png">
+            <img src="img/26.png">
+            <img src="img/27.png">
+            <img src="img/28.png">
+            <img src="img/29.png">
+            <img src="img/30.png">
+            <img src="img/31.png">
+            <img src="img/32.png">
+            <img src="img/33.png">
+            <img src="img/34.png">
+            <img src="img/35.png">
+            <img src="img/36.png">
+            <img src="img/37.png">
+            <img src="img/38.png">
+            <img src="img/39.png">
+            <img src="img/40.png">
+            <img src="img/41.png">
+            <img src="img/42.png">
+            <img src="img/43.png">
+            <img src="img/44.png">
+            <img src="img/45.png">
+            <img src="img/46.png">
+            <img src="img/47.png">
+            <img src="img/48.png">
+            <img src="img/49.png">
+            <img src="img/50.png">
+            <img src="img/51.png">
+            <img src="img/52.png">
+            <img src="img/53.png">
+            <img src="img/54.png">
+            <img src="img/55.png">
+            <img src="img/56.png">
+            <img src="img/57.png">
+            <img src="img/58.png">
+            <img src="img/59.png">
         </div>
     </div>
 
-    <!-- تأكد إن <audio> موجود داخل <body> -->
+    <!-- الصوت -->
     <audio id="bg-music" loop playsinline>
-    <source src="a.mp3" type="audio/mpeg">
+        <source src="a.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-    (function() {
-    const audio = document.getElementById('bg-music');
-    if (!audio) return;
+        // تكرار الصور تلقائياً لعمل سلايد انسيابي بدون تقطيع
+        const g = document.getElementById('gallery');
+        g.innerHTML += g.innerHTML;
 
-    // إعدادات مريحة
-    audio.volume = 1.0; // تقدر تعدل الحجم 0.0 - 1.0
+        // تشغيل الصوت مع أول تفاعل
+        (function() {
+            const audio = document.getElementById('bg-music');
+            if (!audio) return;
 
-    let started = false;
+            audio.volume = 1.0;
+            let started = false;
 
-    function tryPlay() {
-        if (started) return;
-        started = true;
+            function tryPlay() {
+                if (started) return;
+                started = true;
 
-        // حاول التشغيل مباشرة ولقطة احتياطية مع تأخير
-        audio.play().then(() => {
-        console.log('audio playing');
-        removeListeners();
-        }).catch(err => {
-        console.warn('play() rejected, retrying...', err);
-        // محاولة ثانية بعد تأخير بسيط
-        setTimeout(() => {
-            audio.play().catch(e => {
-            console.error('final play() failed:', e);
-            });
-        }, 300);
-        removeListeners();
-        });
-    }
+                audio.play().catch(() => {});
+            }
 
-    // إذا المستخدم ضغط أو لمس بأي مكان
-    function onPointerStart(e) {
-        tryPlay();
-    }
-
-    // دعم أزرار الريموت (Enter, OK, المسافة، مفاتيح الميديا)
-    function onKeyDown(e) {
-        const allowedKeys = [
-        'Enter', ' ', 'Spacebar', // Enter / space
-        'MediaPlayPause', 'MediaPlay', 'MediaPause',
-        'OK', 'Select' // بعض أجهزة التلفزيون
-        ];
-        if (allowedKeys.includes(e.key) || e.key === 'Enter' || e.key === ' ') {
-        tryPlay();
-        }
-        // بعض متصفحات تستخدم keyCode
-        const allowedCodes = [13, 32, 415, 179]; // 13=Enter,32=Space,415=MediaPlay,179=MediaPlayPause
-        if (allowedCodes.includes(e.keyCode)) {
-        tryPlay();
-        }
-    }
-
-    // لو الصفحة رجعت (visibility) نحاول نضمن استمرار الصوت
-    function onVisibilityChange() {
-        if (document.visibilityState === 'visible' && started && audio.paused) {
-        audio.play().catch(()=>{});
-        }
-    }
-
-    function removeListeners() {
-        window.removeEventListener('pointerdown', onPointerStart);
-        window.removeEventListener('touchstart', onPointerStart);
-        window.removeEventListener('click', onPointerStart);
-        window.removeEventListener('keydown', onKeyDown);
-        document.removeEventListener('visibilitychange', onVisibilityChange);
-    }
-
-    // نضيف المستمعين - يستخدم pointerdown + touchstart + click + keydown
-    window.addEventListener('pointerdown', onPointerStart, { once: true });
-    window.addEventListener('touchstart', onPointerStart, { once: true });
-    window.addEventListener('click', onPointerStart, { once: true });
-    window.addEventListener('keydown', onKeyDown, { once: true });
-    document.addEventListener('visibilitychange', onVisibilityChange);
-
-    // محاولة تشغيل مسبقاً لو يسمح المتصفح (فقط محاولة)
-    window.addEventListener('load', () => {
-        audio.play().then(() => {
-        started = true;
-        removeListeners();
-        }).catch(()=>{ /* يتوقع الرفض - ننتظر التفاعل */ });
-    });
-    })();
+            window.addEventListener('pointerdown', tryPlay, { once: true });
+            window.addEventListener('touchstart', tryPlay, { once: true });
+            window.addEventListener('click', tryPlay, { once: true });
+            window.addEventListener('keydown', tryPlay, { once: true });
+        })();
     </script>
 
 </body>
