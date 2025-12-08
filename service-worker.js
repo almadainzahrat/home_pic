@@ -1,9 +1,9 @@
 const CACHE_NAME = "madain-cache-v1";
-
+const BASE = "/home_pic/";
 const FILES_TO_CACHE = [
-  "./",
-  "index.html",
-  "a.mp3",
+  BASE,
+  BASE + "index.html",
+  BASE + "a.mp3",
 
   // الصور
   "img/1.png", "img/2.png", "img/3.png", "img/4.png",
