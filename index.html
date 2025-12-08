@@ -56,7 +56,6 @@
 
     <div class="gallery-container">
         <div class="gallery" id="gallery">
-            <!-- فقط صورك الأصلية من 1 إلى 59 -->
             <img src="img/1.png">
             <img src="img/2.png">
             <img src="img/3.png">
@@ -149,6 +148,11 @@
             window.addEventListener('click', tryPlay, { once: true });
             window.addEventListener('keydown', tryPlay, { once: true });
         })();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js');
+}
     </script>
 
 </body>
