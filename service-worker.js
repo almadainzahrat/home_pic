@@ -4,6 +4,7 @@ const FILES_TO_CACHE = [
   BASE,
   BASE + "index.html",
   BASE + "a.mp3",
+  BASE + "maninfest/json"
 
   // الصور
   "img/1.png", "img/2.png", "img/3.png", "img/4.png",
