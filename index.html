@@ -2,10 +2,8 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عقارات زهرة المدائن</title>
-
     <style>
         * {
             margin: 0;
@@ -33,31 +31,34 @@
 
         .gallery {
             display: flex;
+            gap: 30px;
             height: 100%;
-            gap: 1rem;
-            flex-wrap: nowrap;
-            animation: scroll 40s linear infinite;
+            width: fit-content;
+            animation: scroll-left 400s linear infinite;
         }
 
         .gallery img {
             height: 100%;
             width: auto;
-            flex-shrink: 0;
             object-fit: cover;
+            flex-shrink: 0;
         }
 
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
+        /* Scrolling animation from right to left - continuous */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
     </style>
 </head>
-
 <body>
-
     <div class="gallery-container">
-        <div class="gallery" id="gallery">
-            <img src="img/1.png">
+        <div class="gallery">
+           <img src="img/1.png">
             <img src="img/2.png">
             <img src="img/3.png">
             <img src="img/4.png">
@@ -116,7 +117,9 @@
             <img src="img/57.png">
             <img src="img/58.png">
             <img src="img/59.png">
-                        <img src="img/1.png">
+
+
+           <img src="img/1.png">
             <img src="img/2.png">
             <img src="img/3.png">
             <img src="img/4.png">
@@ -177,19 +180,15 @@
             <img src="img/59.png">
         </div>
     </div>
-
-    <!-- الصوت -->
     <audio id="bg-music" loop playsinline>
         <source src="a.mp3" type="audio/mpeg">
     </audio>
+    <!-- Audio Player -->
 
     <script>
-        // تكرار الصور تلقائياً لعمل سلايد انسيابي بدون تقطيع
-        const g = document.getElementById('gallery');
-        g.innerHTML += g.innerHTML;
+        // Ensure audio plays on page load
 
-        // تشغيل الصوت مع أول تفاعل
-        (function() {
+            (function() {
             const audio = document.getElementById('bg-music');
             if (!audio) return;
 
@@ -209,6 +208,5 @@
             window.addEventListener('keydown', tryPlay, { once: true });
         })();
     </script>
-
 </body>
 </html>
