@@ -34,7 +34,8 @@
             gap: 30px;
             height: 100%;
             width: fit-content;
-            animation: scroll-left 400s linear infinite;
+            /* تم زيادة الوقت لـ 800 ثانية لأن عدد الصور أصبح كبيراً جداً */
+            animation: scroll-left 800s linear infinite;
         }
 
         .gallery img {
@@ -44,152 +45,54 @@
             flex-shrink: 0;
         }
 
-        /* Scrolling animation from right to left - continuous */
         @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
 <body>
+
     <div class="gallery-container">
-        <div class="gallery">
-           <img src="img/1.png">
-            <img src="img/2.png">
-            <img src="img/3.png">
-            <img src="img/4.png">
-            <img src="img/5.png">
-            <img src="img/6.png">
-            <img src="img/7.png">
-            <img src="img/8.png">
-            <img src="img/9.png">
-            <img src="img/10.png">
-            <img src="img/11.png">
-            <img src="img/12.png">
-            <img src="img/13.png">
-            <img src="img/14.png">
-            <img src="img/15.png">
-            <img src="img/16.png">
-            <img src="img/17.png">
-            <img src="img/18.png">
-            <img src="img/19.png">
-            <img src="img/20.png">
-            <img src="img/21.png">
-            <img src="img/22.png">
-            <img src="img/23.png">
-            <img src="img/24.png">
-            <img src="img/25.png">
-            <img src="img/32.png">
-            <img src="img/33.png">
-            <img src="img/34.png">
-            <img src="img/35.png">
-            <img src="img/36.png">
-            <img src="img/37.png">
-            <img src="img/38.png">
-            <img src="img/39.png">
-            <img src="img/40.png">
-            <img src="img/41.png">
-            <img src="img/42.png">
-            <img src="img/43.png">
-            <img src="img/44.png">
-            <img src="img/45.png">
-            <img src="img/46.png">
-            <img src="img/47.png">
-            <img src="img/48.png">
-            <img src="img/49.png">
-            <img src="img/50.png">
-            <img src="img/51.png">
-            <img src="img/52.png">
-            <img src="img/53.png">
-            <img src="img/54.png">
-            <img src="img/55.png">
-            <img src="img/56.png">
-            <img src="img/57.png">
-            <img src="img/58.png">
-            <img src="img/59.png">
-
-
-           <img src="img/1.png">
-            <img src="img/2.png">
-            <img src="img/3.png">
-            <img src="img/4.png">
-            <img src="img/5.png">
-            <img src="img/6.png">
-            <img src="img/7.png">
-            <img src="img/8.png">
-            <img src="img/9.png">
-            <img src="img/10.png">
-            <img src="img/11.png">
-            <img src="img/12.png">
-            <img src="img/13.png">
-            <img src="img/14.png">
-            <img src="img/15.png">
-            <img src="img/16.png">
-            <img src="img/17.png">
-            <img src="img/18.png">
-            <img src="img/19.png">
-            <img src="img/20.png">
-            <img src="img/21.png">
-            <img src="img/22.png">
-            <img src="img/23.png">
-            <img src="img/24.png">
-            <img src="img/25.png">
-            <img src="img/32.png">
-            <img src="img/33.png">
-            <img src="img/34.png">
-            <img src="img/35.png">
-            <img src="img/36.png">
-            <img src="img/37.png">
-            <img src="img/38.png">
-            <img src="img/39.png">
-            <img src="img/40.png">
-            <img src="img/41.png">
-            <img src="img/42.png">
-            <img src="img/43.png">
-            <img src="img/44.png">
-            <img src="img/45.png">
-            <img src="img/46.png">
-            <img src="img/47.png">
-            <img src="img/48.png">
-            <img src="img/49.png">
-            <img src="img/50.png">
-            <img src="img/51.png">
-            <img src="img/52.png">
-            <img src="img/53.png">
-            <img src="img/54.png">
-            <img src="img/55.png">
-            <img src="img/56.png">
-            <img src="img/57.png">
-            <img src="img/58.png">
-            <img src="img/59.png">
-        </div>
+        <div class="gallery" id="imageGallery"></div>
     </div>
+
     <audio id="bg-music" loop playsinline>
         <source src="a.mp3" type="audio/mpeg">
     </audio>
-    <!-- Audio Player -->
 
     <script>
-        // Ensure audio plays on page load
+        // 1. كود توليد الصور تلقائياً
+        const gallery = document.getElementById('imageGallery');
+        const totalImages = 212; // عدد الصور الكلي
 
-            (function() {
+        // نحتاج تكرار الصور مرتين ليعمل الانميشن بشكل متواصل (Infinite Loop)
+        function loadImages() {
+            let imagesHTML = '';
+            // المرة الأولى
+            for (let i = 1; i <= totalImages; i++) {
+                imagesHTML += `<img src="g/${i}.jpeg" loading="lazy">`;
+            }
+            // المرة الثانية (للتكرار)
+            for (let i = 1; i <= totalImages; i++) {
+                imagesHTML += `<img src="g/${i}.jpeg" loading="lazy">`;
+            }
+            gallery.innerHTML = imagesHTML;
+        }
+
+        loadImages();
+
+        // 2. كود تشغيل الموسيقى الخاص بك
+        (function() {
             const audio = document.getElementById('bg-music');
             if (!audio) return;
-
             audio.volume = 1.0;
             let started = false;
-
             function tryPlay() {
                 if (started) return;
                 started = true;
-
                 audio.play().catch(() => {});
             }
-
             window.addEventListener('pointerdown', tryPlay, { once: true });
             window.addEventListener('touchstart', tryPlay, { once: true });
             window.addEventListener('click', tryPlay, { once: true });
