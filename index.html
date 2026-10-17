@@ -77,54 +77,40 @@
         const totalImages = 119;
 
         function loadImages() {
-            const imageChecks = [];
+            const validImages = [];
 
             for (let i = 1; i <= totalImages; i++) {
-                imageChecks.push(
-                    new Promise((resolve) => {
-                        const jpegPath = `g/${i}.jpeg`;
-                        const jpgPath = `g/${i}.jpg`;
+                let extension;
 
-                        const jpegImage = new Image();
-
-                        jpegImage.onload = () => {
-                            resolve(jpegPath);
-                        };
-
-                        jpegImage.onerror = () => {
-                            const jpgImage = new Image();
-
-                            jpgImage.onload = () => {
-                                resolve(jpgPath);
-                            };
-
-                            jpgImage.onerror = () => {
-                                // Skip numbers that do not exist
-                                resolve(null);
-                            };
-
-                            jpgImage.src = jpgPath;
-                        };
-
-                        jpegImage.src = jpegPath;
-                    })
-                );
-            }
-
-            Promise.all(imageChecks).then((results) => {
-                const validImages = results.filter((path) => path !== null);
-
-                if (validImages.length === 0) {
-                    console.error('No images were found in the g folder.');
-                    return;
+                if (i >= 98) {
+                    // New images: 98.jpg to 119.jpg
+                    extension = 'jpg';
+                } else {
+                    // Original images: 1.jpeg to 96.jpeg
+                    extension = 'jpeg';
                 }
 
-                // Duplicate the images for continuous scrolling
-                const allImages = [...validImages, ...validImages];
+                // Skip image number 97
+                if (i === 97) {
+                    continue;
+                }
 
-                gallery.innerHTML = allImages.map((src) => {
-                    return `<img src="${src}" loading="lazy" alt="عقارات زهرة المدائن">`;
-                }).join('');
+                validImages.push(`g/${i}.${extension}`);
+            }
+
+            // Duplicate the images for continuous scrolling
+            const allImages = [...validImages, ...validImages];
+
+            gallery.innerHTML = allImages.map((src) => {
+                return `<img src="${src}" loading="lazy" alt="عقارات زهرة المدائن">`;
+            }).join('');
+
+            // Remove any images that cannot be loaded
+            gallery.querySelectorAll('img').forEach((img) => {
+                img.onerror = function () {
+                    console.error('Could not load image:', this.src);
+                    this.remove();
+                };
             });
         }
 
@@ -146,7 +132,7 @@
                 started = true;
 
                 audio.play().catch(() => {
-                    // Some browsers require another user interaction
+                    // Some browsers require user interaction
                 });
             }
 
