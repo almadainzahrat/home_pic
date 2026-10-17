@@ -69,87 +69,93 @@
         <source src="a.mp3" type="audio/mpeg">
     </audio>
 
-    
-<script>
-    // 1. Load all available images
-    const gallery = document.getElementById('imageGallery');
-    const totalImages = 119;
+    <script>
+        // Gallery settings
+        const gallery = document.getElementById('imageGallery');
+        const totalImages = 119;
 
-    function checkImage(path) {
-        return new Promise((resolve) => {
-            const image = new Image();
+        // Check whether an image exists and can be loaded
+        function checkImage(path) {
+            return new Promise((resolve) => {
+                const image = new Image();
 
-            image.onload = () => resolve(path);
-            image.onerror = () => resolve(null);
+                image.onload = () => resolve(path);
+                image.onerror = () => resolve(null);
 
-            image.src = path;
-        });
-    }
+                image.src = path;
+            });
+        }
 
-    async function loadImages() {
-        const imagePaths = [];
+        // Load images using the filenames in the GitHub repository
+        async function loadImages() {
+            const imagePaths = [];
 
-        for (let i = 1; i <= totalImages; i++) {
-            // Check both possible extensions
-            const jpegPath = `g/${i}.jpeg`;
-            const jpgPath = `g/${i}.jpg`;
+            for (let i = 1; i <= totalImages; i++) {
+                let path;
 
-            const jpegResult = await checkImage(jpegPath);
+                if (i >= 98 && i <= 119) {
+                    path = `g/${i}.jpg`;
+                } else if (i === 97) {
+                    path = `g/${i}.jpg`;
+                } else {
+                    path = `g/${i}.jpeg`;
+                }
 
-            if (jpegResult) {
-                imagePaths.push(jpegResult);
-                continue;
+                const result = await checkImage(path);
+
+                if (result) {
+                    imagePaths.push(result);
+                } else {
+                    console.warn(`Image not found: ${path}`);
+                }
             }
 
-            const jpgResult = await checkImage(jpgPath);
-
-            if (jpgResult) {
-                imagePaths.push(jpgResult);
+            if (imagePaths.length === 0) {
+                console.error('No images could be loaded.');
+                return;
             }
+
+            // Duplicate images to create continuous scrolling
+            const allImages = [...imagePaths, ...imagePaths];
+
+            gallery.innerHTML = allImages.map(path =>
+                `<img src="${path}" alt="عقارات زهرة المدائن">`
+            ).join('');
+
+            console.log('Images loaded:', imagePaths.length);
+            console.log('Missing images:', totalImages - imagePaths.length);
+            console.log('Image list:', imagePaths);
         }
 
-        if (imagePaths.length === 0) {
-            console.error('No images could be loaded.');
-            return;
-        }
+        loadImages();
 
-        // Duplicate the complete list for continuous scrolling
-        const allImages = [...imagePaths, ...imagePaths];
+        // Background music
+        (function () {
+            const audio = document.getElementById('bg-music');
 
-        gallery.innerHTML = allImages.map((path) =>
-            `<img src="${path}" alt="عقارات زهرة المدائن">`
-        ).join('');
+            if (!audio) return;
 
-        console.log('Images loaded:', imagePaths.length);
-        console.log('Image list:', imagePaths);
-    }
+            audio.volume = 1.0;
 
-    loadImages();
+            let started = false;
 
-    // 2. Background music
-    (function () {
-        const audio = document.getElementById('bg-music');
+            function tryPlay() {
+                if (started) return;
 
-        if (!audio) return;
+                audio.play()
+                    .then(() => {
+                        started = true;
+                    })
+                    .catch(() => {
+                        started = false;
+                    });
+            }
 
-        audio.volume = 1.0;
-
-        let started = false;
-
-        function tryPlay() {
-            if (started) return;
-
-            started = true;
-
-            audio.play().catch(() => {});
-        }
-
-        window.addEventListener('pointerdown', tryPlay, { once: true });
-        window.addEventListener('touchstart', tryPlay, { once: true });
-        window.addEventListener('click', tryPlay, { once: true });
-        window.addEventListener('keydown', tryPlay, { once: true });
-    })();
-</script>
-
+            window.addEventListener('pointerdown', tryPlay);
+            window.addEventListener('touchstart', tryPlay);
+            window.addEventListener('click', tryPlay);
+            window.addEventListener('keydown', tryPlay);
+        })();
+    </script>
 </body>
 </html>
