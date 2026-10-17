@@ -69,78 +69,87 @@
         <source src="a.mp3" type="audio/mpeg">
     </audio>
 
-    <script>
-        // 1. Automatically load all available images
-        const gallery = document.getElementById('imageGallery');
+    
+<script>
+    // 1. Load all available images
+    const gallery = document.getElementById('imageGallery');
+    const totalImages = 119;
 
-        // Highest image number currently uploaded
-        const totalImages = 119;
+    function checkImage(path) {
+        return new Promise((resolve) => {
+            const image = new Image();
 
-        function loadImages() {
-            const validImages = [];
+            image.onload = () => resolve(path);
+            image.onerror = () => resolve(null);
 
-            for (let i = 1; i <= totalImages; i++) {
-                let extension;
+            image.src = path;
+        });
+    }
 
-                if (i >= 98) {
-                    // New images: 98.jpg to 119.jpg
-                    extension = 'jpg';
-                } else {
-                    // Original images: 1.jpeg to 96.jpeg
-                    extension = 'jpeg';
-                }
+    async function loadImages() {
+        const imagePaths = [];
 
-                // Skip image number 97
-                if (i === 97) {
-                    continue;
-                }
+        for (let i = 1; i <= totalImages; i++) {
+            // Check both possible extensions
+            const jpegPath = `g/${i}.jpeg`;
+            const jpgPath = `g/${i}.jpg`;
 
-                validImages.push(`g/${i}.${extension}`);
+            const jpegResult = await checkImage(jpegPath);
+
+            if (jpegResult) {
+                imagePaths.push(jpegResult);
+                continue;
             }
 
-            // Duplicate the images for continuous scrolling
-            const allImages = [...validImages, ...validImages];
+            const jpgResult = await checkImage(jpgPath);
 
-            gallery.innerHTML = allImages.map((src) => {
-                return `<img src="${src}" loading="lazy" alt="عقارات زهرة المدائن">`;
-            }).join('');
-
-            // Remove any images that cannot be loaded
-            gallery.querySelectorAll('img').forEach((img) => {
-                img.onerror = function () {
-                    console.error('Could not load image:', this.src);
-                    this.remove();
-                };
-            });
+            if (jpgResult) {
+                imagePaths.push(jpgResult);
+            }
         }
 
-        loadImages();
+        if (imagePaths.length === 0) {
+            console.error('No images could be loaded.');
+            return;
+        }
 
-        // 2. Background music
-        (function () {
-            const audio = document.getElementById('bg-music');
+        // Duplicate the complete list for continuous scrolling
+        const allImages = [...imagePaths, ...imagePaths];
 
-            if (!audio) return;
+        gallery.innerHTML = allImages.map((path) =>
+            `<img src="${path}" alt="عقارات زهرة المدائن">`
+        ).join('');
 
-            audio.volume = 1.0;
+        console.log('Images loaded:', imagePaths.length);
+        console.log('Image list:', imagePaths);
+    }
 
-            let started = false;
+    loadImages();
 
-            function tryPlay() {
-                if (started) return;
+    // 2. Background music
+    (function () {
+        const audio = document.getElementById('bg-music');
 
-                started = true;
+        if (!audio) return;
 
-                audio.play().catch(() => {
-                    // Some browsers require user interaction
-                });
-            }
+        audio.volume = 1.0;
 
-            window.addEventListener('pointerdown', tryPlay, { once: true });
-            window.addEventListener('touchstart', tryPlay, { once: true });
-            window.addEventListener('click', tryPlay, { once: true });
-            window.addEventListener('keydown', tryPlay, { once: true });
-        })();
-    </script>
+        let started = false;
+
+        function tryPlay() {
+            if (started) return;
+
+            started = true;
+
+            audio.play().catch(() => {});
+        }
+
+        window.addEventListener('pointerdown', tryPlay, { once: true });
+        window.addEventListener('touchstart', tryPlay, { once: true });
+        window.addEventListener('click', tryPlay, { once: true });
+        window.addEventListener('keydown', tryPlay, { once: true });
+    })();
+</script>
+
 </body>
 </html>
